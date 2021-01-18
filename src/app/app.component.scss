@@ -18,7 +18,7 @@
 }
 
 .example-card {
-  height:50px;
+  height:70px;
   margin-bottom: 10px;
   background-color:#00E5B7;
   color:#ffffff
@@ -49,4 +49,10 @@
 
 }
 
+mat-progress-bar .mat-progress-bar-buffer {
+  background: #88c4f1;
+}
 
+.game-progress{
+  margin-top: 50px;
+}

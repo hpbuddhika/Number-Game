@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit {
   gameReset: boolean = false;
   showWinner: boolean = false;
   winner: string = "";
-  severErr:boolean = false;
+  severErr: boolean = false;
+  showGameInProgress: boolean = false;
+  message: string = "";
 
   constructor(
     private webSocketService: WebsocketService,
@@ -32,6 +35,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.webSocketService.connect().subscribe(
       msg => {
+        this.message = msg.type;
         this.severErr = false;
         if (msg.type === "Game Waiting") {
           //  console.log("____waiting to game to start______");
@@ -46,6 +50,7 @@ export class AppComponent implements OnInit {
           this.showWinner = false;
           this.showCount = false;
           this.gameReset = false
+          this.showGameInProgress = true;
         } else if (msg.type === "Played Round") {
           //console.log("______game playing__________")
           // console.log("______rs________"+ JSON.stringify(msg))
@@ -59,8 +64,9 @@ export class AppComponent implements OnInit {
           // console.log("there is a winner: " + msg.data.name)
           this.showWinner = true;
           this.winner = msg.data.name;
+          this.showGameInProgress = false;
         }
-        console.log("msg :   " + JSON.stringify(msg))
+       // console.log("msg :   " + JSON.stringify(msg))
       },
       err => {
         console.log(JSON.stringify(err.error))
@@ -103,6 +109,7 @@ export class AppComponent implements OnInit {
       msg => {
         console.log(JSON.stringify(msg))
         this.severErr = false;
+        this.join();
         this._snackBar.open("Welcome to the game, player ;)", "OK", {
           duration: 2000,
         });
@@ -115,10 +122,14 @@ export class AppComponent implements OnInit {
           });
         }
         console.log("err in server:")
-        this.severErr = true;
+
 
       },
     );
+  }
+
+  join() {
+   console.log("you will be added to the next round")
   }
 
   numbers: Number[] = [
@@ -133,6 +144,7 @@ export class AppComponent implements OnInit {
     { value: 9 },
     { value: 10 },
   ];
+
 
 }
 
