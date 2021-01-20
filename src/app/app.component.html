@@ -8,20 +8,22 @@
   </p>
   <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
     <div fxFlex="70%" class="card-container">
-      <mat-card style="border:2px solid black" *ngFor="let player of playerList" class="example-card">
-        <div style="border:2px solid red">
-          <div style="border:2px solid blue;width:100%" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-            <div fxFlex="33%" fxLayout="row">
+      <mat-card *ngFor="let player of playerList" ngClass="example-card">
+        <div>
+          <div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+            <div fxFlex="50%" fxLayout="row">
               <div mat-card-avatar class="example-header-image"></div>
-              <div style="margin-left: 20px;margin-top:0px" fxFlex fxLayout="column">
-                <mat-card-title style="margin-bottom: 10px;">{{player.name}}</mat-card-title>
-                <mat-card-subtitle style="margin-bottom: 5px;">Upper: {{player.upper}}</mat-card-subtitle>
-                <mat-card-subtitle>Lower: {{player.lower}}</mat-card-subtitle>
+              <div class="player-details"  fxFlex fxLayout="column">
+                <mat-card-title ngClass="player-name" [ngClass.xs]="{'player-name-sm':true,'player-name':false}" >{{player.name | slice:0:10}}</mat-card-title>
+                <mat-card-subtitle  fxHide="true" fxShow.gt-xs style="margin-bottom: 5px;">Upper: {{player.upper}} - Lower: {{player.lower}}
+                </mat-card-subtitle>
+                <mat-card-subtitle  fxHide="true" fxShow.lt-xs [ngClass.xs]="{'card-sm':true}" style="margin-bottom: 5px;">U: {{player.upper}} L: {{player.lower}}
+                </mat-card-subtitle>
               </div>
             </div>
-            <h1 fxFlex="33%">Score: </h1>
-            <div fxFlex="33%">
-              <h2 *ngIf="player.winner">winner</h2>
+            <h1 fxFlex="30%" ngClass="score" [ngClass.xs]="{'score':false,'score-sm':true}"><span>Score  :  </span>{{player.score}}</h1>
+            <div fxFlex="20%">
+              <h2 class="winner" *ngIf="player.winner" [ngClass.xs]="{'winner-sm':true}">winner</h2>
             </div>
           </div>
         </div>
@@ -34,15 +36,16 @@
         </mat-card-content> -->
       </mat-card>
       <!-- <h1 *ngIf="playerList.length == 0" class="no-player-msg"> No Players Online </h1> -->
-      <div *ngIf="showWinner" style="text-align: center;margin-bottom: 20px;">
-        <img src="https://i.gifer.com/ZUiY.gif" alt="Winner!!!!" width="150" height="180">
+      <div *ngIf="showWinner" ngClass="show-winner" [ngClass.xs]="{'show-winner':false,'show-winner-sm':true}">
+        <img src="https://i.gifer.com/ZUiY.gif" alt="Winner!!!!" ngClass="show-winner-gif" [ngClass.xs]="{'show-winner-gif':false,'show-winner-gif-sm':true}">
         <h1>The Winner !</h1>
-        <h1 style="font-size: 2rem;color:#F78400">{{winner}}</h1>
+        <h1 style="font-size: 2rem;color:#F78400">{{winner | slice:0:20}}</h1>
         <!-- <img src="https://i.gifer.com/8i79.gif" alt="Girl in a jacket" width="100" height="120"> -->
       </div>
       <h1 *ngIf="gameReset" class="no-player-msg">Game Resetting ...</h1>
-      <div style="text-align: center;" *ngIf="showCount">
-        <h1 style="font-size: 5em;margin-top: 30px;">{{count}}</h1>
+      <div class="show-count" *ngIf="showCount">
+        <h1 fxHide="true" fxShow.gt-xs style="font-size: 5em;margin-top: 30px;">{{count}}</h1>
+        <h4 fxHide="true" fxShow.lt-sm style="font-size: 2em;margin-top: 20px;">{{count}}</h4>
       </div>
       <div *ngIf="severErr" style="text-align: center;margin-top:100px">
         <h1>"Oops! Something went wrong." </h1>
@@ -74,7 +77,9 @@
         </mat-form-field>
         <button [disabled]="!contactForm.valid" type="submit" mat-raised-button color="primary">Join Game</button>
         <div *ngIf="showGameInProgress" class="game-progress">
-          <h2 style="display:inline-block">Games In Progress <span> <mat-progress-bar  mode="buffer"></mat-progress-bar> </span></h2>
+          <h2 style="display:inline-block">Games In Progress <span>
+              <mat-progress-bar mode="buffer"></mat-progress-bar>
+            </span></h2>
         </div>
       </form>
     </div>

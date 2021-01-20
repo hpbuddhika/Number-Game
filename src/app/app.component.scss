@@ -11,48 +11,109 @@
 .card-container {
   height: 98.4%;
   overflow: auto;
-  padding:10px;
+  padding: 10px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
 .example-card {
-  height:70px;
+  height: 60px;
   margin-bottom: 10px;
-  background-color:#00E5B7;
-  color:#ffffff
+  background-color: #00e5b7;
+  color: #ffffff;
 }
 
 .example-header-image {
-  background-image: url('https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50');
+  background-image: url("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50");
   background-size: cover;
   width: 50px;
-  height:50px;
+  height: 50px;
+  // margin-top:10px
 }
 
-.input-container{
-  width:80%;
-  height:500px;
-  margin:0 auto;
+.input-container {
+  width: 80%;
+  height: 500px;
+  margin: 0 auto;
   margin-bottom: 10px;
 }
 
 .mat-toolbar {
-  background: #0F313F;
-  color: #fff
+  background: #0f313f;
+  color: #fff;
 }
 
-.no-player-msg{
-  margin:auto 0;
+.no-player-msg {
+  margin: auto 0;
   text-align: center;
-
 }
 
 mat-progress-bar .mat-progress-bar-buffer {
   background: #88c4f1;
 }
 
-.game-progress{
+.game-progress {
   margin-top: 50px;
+}
+
+.score {
+  text-align: start;
+  margin-top: 12px;
+  padding-right: 20px;
+}
+
+.score-sm {
+  font-size: 1.1em;
+  text-align: start;
+  margin-bottom: 0px;
+}
+
+.winner {
+  text-align: end;
+  margin-top: 12px;
+}
+
+.winner-sm {
+  font-size: 1rem;
+}
+
+.player-details{
+  margin-left: 20px;
+  margin-top:0px;
+  width:100%;
+}
+
+.player-name {
+  margin-bottom: 10px;
+  width:100%;
+}
+
+.player-name-sm {
+  margin-bottom: 0px;
+  margin-top: 15px;
+  font-size: 1em;
+}
+
+.show-winner{
+ text-align: center;
+ margin-bottom: 20px;
+}
+.show-winner-sm{
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.show-winner-gif{
+  width:150px;
+  height:180px;
+}
+
+.show-winner-gif-sm{
+  width:75px;
+  height:90px;
+}
+
+.show-count{
+  text-align: center;
 }
