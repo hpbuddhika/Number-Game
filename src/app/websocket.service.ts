@@ -1,28 +1,21 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService implements OnInit {
+export class WebsocketService{
 
-  private myWebSocket:WebSocketSubject<any>
+  private myWebSocket: WebSocketSubject<any>;
 
   constructor() {
     this.myWebSocket = webSocket('ws://localhost:8089/subscribe');
   }
 
-  ngOnInit(){
-    this.connect();
-  }
-
-  connect(){
-    return this.myWebSocket.asObservable()
-  }
-
-  diconnet(){
-    return this.myWebSocket.unsubscribe()
+  connect(): Observable<any>{
+    return this.myWebSocket.asObservable();
   }
 
 }
