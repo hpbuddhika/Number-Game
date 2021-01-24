@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GameService } from './game.service';
 import { WebsocketService } from './websocket.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -53,10 +52,8 @@ export class AppComponent implements OnInit {
         this.message = msg.type;
         this.severErr = false;
         if (msg.type === 'Game Waiting') {
-          //  console.log("____waiting to game to start______");
           this.joinGameToStart = true
           this.gameStartedProgressbar = true;
-
         } else if (msg.type === 'Countdown Started' || msg.type === 'Counting Down') {
           this.joinGameToStart = false;
           this.showCount = true;
@@ -77,7 +74,6 @@ export class AppComponent implements OnInit {
           this.winner = msg.data.name;
           this.showGameInProgress = false;
         }
-       // console.log("msg :   " + JSON.stringify(msg))
       },
       err => {
         console.log(JSON.stringify(err.error));
@@ -89,8 +85,6 @@ export class AppComponent implements OnInit {
 
     );
   }
-
-
 
   submit(form: any): void {
 
@@ -114,7 +108,6 @@ export class AppComponent implements OnInit {
       msg => {
         console.log(JSON.stringify(msg));
         this.severErr = false;
-        this.join();
         this.snackBar.open('You will be added to the next Game', 'OK', {
           duration: 5000,
         });
@@ -131,10 +124,6 @@ export class AppComponent implements OnInit {
 
       },
     );
-  }
-
-  join(): void {
-   console.log('you will be added to the next round');
   }
 
 }

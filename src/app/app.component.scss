@@ -38,6 +38,7 @@
   height: 500px;
   margin: 0 auto;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .errMsg {
@@ -146,11 +147,6 @@ mat-progress-bar .mat-progress-bar-buffer {
 ::-webkit-scrollbar-thumb:hover {
   background: #00f8b9;
 }
-
-// mat-icon-stepper selected color change
-// ::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
-//   background-color: rgb(255, 0, 221)!important;
-// }
 
 //input outline color
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {

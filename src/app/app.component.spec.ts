@@ -63,10 +63,4 @@ describe('AppComponent', () => {
     expect(htmlElement.textContent).toEqual('Number Game');
   });
 
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
-
 });

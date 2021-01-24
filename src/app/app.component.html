@@ -59,7 +59,7 @@
               {{number.value}}
             </mat-option>
           </mat-select>
-          <mat-error class="errMsg" *ngIf="playerName.invalid">{{"First Number is required"}}</mat-error>
+          <mat-error class="errMsg" *ngIf="firstNumber.invalid">{{"First Number is required"}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Second Number</mat-label>
@@ -68,7 +68,7 @@
               {{number.value}}
             </mat-option>
           </mat-select>
-          <mat-error class="errMsg" *ngIf="playerName.invalid">{{"Second Number is required"}}</mat-error>
+          <mat-error class="errMsg" *ngIf="secondNumber.invalid">{{"Second Number is required"}}</mat-error>
         </mat-form-field>
         <button class="mat-color-change-btn" [disabled]="!contactForm.valid" type="submit" mat-raised-button color="primary">Join Game</button>
         <div *ngIf="showGameInProgress" class="game-progress">
