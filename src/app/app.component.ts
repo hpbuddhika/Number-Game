@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GameService } from './game.service';
 import { WebsocketService } from './websocket.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
 
   gameStartedProgressbar = false;
+  joinGameToStart=false;
   count = 0;
   showCount = false;
   playerList: PlayerDetails[] = [];
@@ -52,10 +54,11 @@ export class AppComponent implements OnInit {
         this.severErr = false;
         if (msg.type === 'Game Waiting') {
           //  console.log("____waiting to game to start______");
+          this.joinGameToStart = true
           this.gameStartedProgressbar = true;
 
         } else if (msg.type === 'Countdown Started' || msg.type === 'Counting Down') {
-          //  console.log("counting"
+          this.joinGameToStart = false;
           this.showCount = true;
           this.count = msg.data;
           this.gameStartedProgressbar = false;
@@ -65,16 +68,11 @@ export class AppComponent implements OnInit {
           this.gameReset = false;
           this.showGameInProgress = true;
         } else if (msg.type === 'Played Round') {
-          // console.log("______game playing__________")
-          // console.log("______rs________"+ JSON.stringify(msg))
           this.playerList = msg.data.leader_board;
-          // console.log("player list:  " + JSON.stringify(this.playerList))
         } else if (msg.type === 'Game Reset') {
           this.playerList = [];
           this.gameReset = true;
-          // this.showWinner = false;
         } else if (msg.type === 'Game Completed' && msg.data.name && msg.data.winner) {
-          // console.log("there is a winner: " + msg.data.name)
           this.showWinner = true;
           this.winner = msg.data.name;
           this.showGameInProgress = false;
@@ -88,7 +86,7 @@ export class AppComponent implements OnInit {
       },
 
       () => console.log('complete')
-      // Called when connection is closed (for whatever reason)
+
     );
   }
 
@@ -117,15 +115,15 @@ export class AppComponent implements OnInit {
         console.log(JSON.stringify(msg));
         this.severErr = false;
         this.join();
-        this.snackBar.open('Welcome to the game, player ;)', 'OK', {
-          duration: 2000,
+        this.snackBar.open('You will be added to the next Game', 'OK', {
+          duration: 5000,
         });
       },
 
       err => {
         if (err.error.title === 'Invalid Request') {
           this.snackBar.open('There is already a player here with that name', 'oops', {
-            duration: 2000,
+            duration: 5000,
           });
         }
         console.log('err in server:');

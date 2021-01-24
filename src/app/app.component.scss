@@ -25,12 +25,11 @@
 }
 
 .example-header-image {
- // background-image: url("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50");
- // background-image:url("https://robohash.org/buddhika");
+  background-image: url("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50");
+  // background-image:url("https://robohash.org/buddhika");
   background-size: cover;
   width: 50px;
   height: 50px;
-  // margin-top:10px
 }
 
 .input-container {
@@ -38,6 +37,11 @@
   height: 500px;
   margin: 0 auto;
   margin-bottom: 10px;
+}
+
+.errMsg{
+  font-size: 1.2em;
+  color:rgb(255, 153, 0);
 }
 
 .mat-toolbar {
@@ -79,15 +83,15 @@ mat-progress-bar .mat-progress-bar-buffer {
   font-size: 1rem;
 }
 
-.player-details{
+.player-details {
   margin-left: 20px;
-  margin-top:0px;
-  width:100%;
+  margin-top: 0px;
+  width: 100%;
 }
 
 .player-name {
   margin-bottom: 10px;
-  width:100%;
+  width: 100%;
 }
 
 .player-name-sm {
@@ -96,26 +100,26 @@ mat-progress-bar .mat-progress-bar-buffer {
   font-size: 1em;
 }
 
-.show-winner{
- text-align: center;
- margin-bottom: 20px;
+.show-winner {
+  text-align: center;
+  margin-bottom: 20px;
 }
-.show-winner-sm{
+.show-winner-sm {
   margin-bottom: 10px;
   text-align: center;
 }
 
-.show-winner-gif{
-  width:150px;
-  height:180px;
+.show-winner-gif {
+  width: 150px;
+  height: 180px;
 }
 
-.show-winner-gif-sm{
-  width:75px;
-  height:90px;
+.show-winner-gif-sm {
+  width: 75px;
+  height: 90px;
 }
 
-.show-count{
+.show-count {
   text-align: center;
 }
 
@@ -134,10 +138,60 @@ mat-progress-bar .mat-progress-bar-buffer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00F8B9;
+  background: #00f8b9;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00F8B9;
+  background: #00f8b9;
+}
+
+// mat-icon-stepper selected color change
+// ::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+//   background-color: rgb(255, 0, 221)!important;
+// }
+
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(0, 255, 234)!important;
+   opacity: 1!important;
+  //border:5px solid blue;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: rgb(0, 255, 234)!important;
+
+}
+
+// mat-input error outline color
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: rgb(255, 153, 0)!important;
+  opacity: 0.8!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: rgb(0, 255, 234)!important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  caret-color: rgb(255, 153, 0)!important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: rgba(5, 49, 63, 0.6)!important;
+  // color: $mainColor!important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color:rgb(5, 49, 63)!important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: rgb(5, 49, 63)!important;
 }

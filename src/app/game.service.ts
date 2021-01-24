@@ -12,7 +12,7 @@ export class GameService {
 
   CONFIG_URL = 'http://localhost:8089/join';
 
-  joinGame(reqObj: JoinUserReqObj): any {
+  joinGame(reqObj: JoinUserReqObj){
     return this.http.post<JoinUserResponse>(this.CONFIG_URL, reqObj);
   }
 

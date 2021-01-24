@@ -1,3 +1,26 @@
+# Stage 1
+# FROM node:10-alpine as build-step
+
+# RUN mkdir -p /app
+
+# WORKDIR /app
+
+# COPY package.json /app
+
+# RUN npm install
+
+# COPY . /app
+
+# RUN npm run build --prod
+
+# # Stage 2
+
+# FROM nginx:1.17.1-alpine
+
+# COPY --from=build-step /app/dist/game /usr/share/nginx/html
+
+# EXPOSE 80
+
 
 #############
 ### build ###
@@ -26,7 +49,7 @@ RUN npm install -g @angular/cli@11.0.7
 COPY . /app
 
 # run tests
-#RUN ng test --watch=false
+RUN ng test --browsers=Headless --no-watch
 #RUN ng e2e --port 4202
 
 # generate build

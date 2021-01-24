@@ -3,8 +3,6 @@
     <mat-toolbar>
       <span class="title-center">Number Game</span>
     </mat-toolbar>
-    <!-- <mat-progress-bar mode="indeterminate">waiting</mat-progress-bar> -->
-    <!-- <mat-progress-bar *ngIf="gameStartedProgressbar" mode="buffer"></mat-progress-bar> -->
   </p>
   <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
     <div fxFlex="70%" class="card-container">
@@ -12,7 +10,7 @@
         <div>
           <div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
             <div fxFlex="50%" fxLayout="row">
-              <div mat-card-avatar class="example-header-image" style="background-image: url('https://robohash.org/testd')"></div>
+              <div mat-card-avatar class="example-header-image"></div>
               <div class="player-details"  fxFlex fxLayout="column">
                 <mat-card-title ngClass="player-name" [ngClass.xs]="{'player-name-sm':true,'player-name':false}" >{{player.name | slice:0:10}}{{ player.name.length > 10 ? "...": ""}}</mat-card-title>
                 <mat-card-subtitle  fxHide="true" fxShow.gt-xs style="margin-bottom: 5px;">Upper: {{player.upper}} - Lower: {{player.lower}}
@@ -27,20 +25,11 @@
             </div>
           </div>
         </div>
-        <!-- <mat-card-content>
-          <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
-            <div mat-card-avatar class="example-header-image"></div>
-            <h2 style="padding:0px; margin:0px">there</h2>
-            <h2>there</h2>
-          </div>
-        </mat-card-content> -->
       </mat-card>
-      <!-- <h1 *ngIf="playerList.length == 0" class="no-player-msg"> No Players Online </h1> -->
       <div *ngIf="showWinner" ngClass="show-winner" [ngClass.xs]="{'show-winner':false,'show-winner-sm':true}">
         <img src="https://i.gifer.com/ZUiY.gif" alt="Winner!!!!" ngClass="show-winner-gif" [ngClass.xs]="{'show-winner-gif':false,'show-winner-gif-sm':true}">
         <h1>The Winner !</h1>
         <h1 style="font-size: 2rem;color:#F78400">{{winner | slice:0:20}}{{winner.length > 20 ? "...": ""}}</h1>
-        <!-- <img src="https://i.gifer.com/8i79.gif" alt="Girl in a jacket" width="100" height="120"> -->
       </div>
       <h1 *ngIf="gameReset" class="no-player-msg">Game Resetting ...</h1>
       <div class="show-count" *ngIf="showCount">
@@ -48,16 +37,20 @@
         <h4 fxHide="true" fxShow.lt-sm style="font-size: 2em;margin-top: 20px;">{{count}}</h4>
       </div>
       <div *ngIf="severErr" style="text-align: center;margin-top:100px">
-        <h1>"Oops! Something went wrong." </h1>
+        <h1>Oops! Something went wrong </h1>
+      </div>
+      <div *ngIf="joinGameToStart" style="text-align: center;margin-top:100px">
+        <h1>Join Game</h1>
       </div>
     </div>
     <div fxFlex="30%" class="input-container">
       <form fxFlex="100%" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px" #contactForm="ngForm"
         (ngSubmit)="submit(contactForm.value);contactForm.resetForm()">
-        <mat-form-field appearance="outline"> 
+        <mat-form-field  appearance="outline">
           <mat-label>Player Name</mat-label>
           <input required ngModel name="playerName" type="text" #playerName="ngModel" matInput
             placeholder="Player Name">
+          <mat-error class="errMsg" *ngIf="playerName.invalid">{{"Player Name is required"}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>First Number</mat-label>
@@ -66,6 +59,7 @@
               {{number.value}}
             </mat-option>
           </mat-select>
+          <mat-error class="errMsg" *ngIf="playerName.invalid">{{"First Number is required"}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Second Number</mat-label>
@@ -74,6 +68,7 @@
               {{number.value}}
             </mat-option>
           </mat-select>
+          <mat-error class="errMsg" *ngIf="playerName.invalid">{{"Second Number is required"}}</mat-error>
         </mat-form-field>
         <button class="mat-color-change-btn" [disabled]="!contactForm.valid" type="submit" mat-raised-button color="primary">Join Game</button>
         <div *ngIf="showGameInProgress" class="game-progress">

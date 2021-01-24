@@ -24,9 +24,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
@@ -37,7 +34,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     MatProgressBarModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
